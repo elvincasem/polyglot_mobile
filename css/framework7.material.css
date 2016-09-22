@@ -3709,6 +3709,8 @@ html.android-4 .accordion-item-content {
 }
 .card-content {
   position: relative;
+  font-size:16px;
+  margin-left:5px;
 }
 .card-content-inner {
   padding: 16px;
