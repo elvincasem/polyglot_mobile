@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#2196f3">
+    <title>Polyglot</title>
+    <link rel="stylesheet" href="css/framework7.material.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.css">
+   <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/kitchen-sink.css">
+    <link rel="icon" href="img/icon.png">
+  </head>
+  <body class="theme-red" onload="checkSession();">
+	<input type="hidden" id="userdata">
+	
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-cover">
+      <div class="view navbar-fixed">
+        <div class="pages">
+          <div data-page="panel-left" class="page">
+            <div class="navbar">
+              <div class="navbar-inner">
+			  
+              </div>
+            </div>
+            <div class="page-content">
+			
+				<div class="card ks-facebook-card">
+				<div class="card-header no-border">
+				<div class="ks-facebook-avatar"><div class="item-media"><img src="" width="40" id="pimage"></div></div>
+				<div class="ks-facebook-name" id="user_name"></div>
+				<div class="ks-facebook-date" id="email_add"></div>
+				</div>
+				</div>
+        <div id="result"></div>
+              <div class="list-block">
+                <ul>
+                  <li><a id="menu_home" href="#" onclick="createContentPage();" class="item-link close-panel">
+                      <div class="item-content">
+					  <!--<div class="item-media"><img src="img/person1.jpg" width="40"></div>-->
+                        <div class="item-inner">
+                          <div class="item-title">Home</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="pages/profile.html" class="item-link close-panel">
+                      <div class="item-content">
+                        <!--<div class="item-media"><i class="icon ks-icon-like"></i></div>-->
+                        <div class="item-inner">
+                          <div class="item-title">Profile</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="pages/posts.html" class="item-link close-panel">
+                      <div class="item-content">
+                        <!--<div class="item-media"><i class="icon icon-f7"></i></div>-->
+                        <div class="item-inner">
+                          <div class="item-title">Posts</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="pages/likes.html" class="item-link close-panel">
+                      <div class="item-content">
+                        <!--<div class="item-media"><i class="icon icon-f7"></i></div>-->
+                        <div class="item-inner">
+                          <div class="item-title">Likes</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="pages/favorites.html" class="item-link close-panel">
+                      <div class="item-content">
+                        <!--<div class="item-media"><i class="icon icon-f7"></i></div>-->
+                        <div class="item-inner">
+                          <div class="item-title">Favorites</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="setting.html" class="item-link close-panel">
+                      <div class="item-content">
+                        <!--<div class="item-media"><i class="icon icon-f7"></i></div>-->
+                        <div class="item-inner">
+                          <div class="item-title">Settings</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="#" class="item-link close-panel open-login-screen" id="logout_signin" onclick="logout();">
+                      <div class="item-content">
+                        <!--<div class="item-media color-red"><i class="icon icon-plus"></i></div>-->
+                        <div class="item-inner">
+                          <div class="item-title">Logout</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="about.html" class="item-link close-panel">
+                      <div class="item-content">
+                        <!--<div class="item-media"><i class="icon icon-f7"></i></div>-->
+                        <div class="item-inner">
+                          <div class="item-title">About</div>
+                        </div>
+                      </div></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="views">
+      <div class="view view-main">
+        <div class="pages navbar-fixed">
+          <div data-page="index" class="page">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="center">Polyglot Index</div>
+                <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+              </div>
+            </div>
+            <div class="page-content pull-to-refresh-content">
+				<div class="pull-to-refresh-layer">
+					<div class="preloader"></div>
+					<div class="pull-to-refresh-arrow"></div>
+				</div>
+				<div class="list-block" id="post-content">
+				
+					<div class="views">
+						<div class="view view-content"></div>
+					
+					</div>
+				
+				
+				</div>
+				
+				
+			
+            </div>
+			
+			<!--<a href="#" data-popover=".popover-contacts" class="floating-button floating-button-to-popover color-red open-popover"><i class="icon icon-plus"></i></a>-->
+			<a href="post.html" class="floating-button color-red"><i class="icon icon-plus"></i></a>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+
+	
+	
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	
+    <div class="popup demo-popup">
+      <div class="view navbar-fixed">
+        <div class="pages">
+          <div class="page">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="center">Popup Title</div>
+                <div class="right"><a href="#" class="link close-popup">Done</a></div>
+              </div>
+            </div>
+            <div class="page-content">
+              <div class="content-block">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>	  
+    </div>
+	
+	<div class="popover popover-music">
+      <div class="popover-inner">
+		<div class="list-block inputs-list">
+			<ul>
+				<li>
+					<div class="item-content">
+						<div class="item-inner"> 
+							
+							
+							<div class="item-title floating-label">Hey, what's up?</div>
+							<div class="item-input">
+							<textarea class="resizable" rows="8"></textarea>
+							</div>
+							
+							<br>
+							
+							<div class="card ks-facebook-card">
+							<div class="card-footer">
+								<a href="#" class="link close-popover color-red">Discard</a>
+								<a href="#" class="link color-red">Post</a>
+							</div>
+							</div>
+							
+						</div>
+					</div>
+				</li>
+			</ul>	
+		</div>
+      </div>
+    </div>
+	
+	
+    <!--<div class="popover popover-menu">
+      <div class="popover-inner">
+        <div class="list-block">
+          <ul>
+            <li><a href="modals.html" class="list-button item-link">Modals</a></li>
+            <li><a href="popover.html" class="list-button item-link">Popover</a></li>
+            <li><a href="tabs.html" class="list-button item-link">Tabs</a></li>
+            <li><a href="panels.html" class="list-button item-link">Side Panels</a></li>
+            <li><a href="list-view.html" class="list-button item-link">List View</a></li>
+            <li><a href="forms.html" class="list-button item-link">Forms</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+	
+	
+    <div class="popover popover-music">
+      <div class="popover-inner">
+        <div class="list-block media-list">
+          <ul>
+            <li><a href="#" class="item-link item-content">
+                <div class="item-media"><img src="http://lorempixel.com/88/88/people/1" width="44"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">Yellow Submarine</div>
+                  </div>
+                  <div class="item-subtitle">Beatles</div>
+                </div></a></li>
+            <li><a href="#" class="item-link item-content">
+                <div class="item-media"><img src="http://lorempixel.com/88/88/people/2" width="44"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">Don't Stop Me Now</div>
+                  </div>
+                  <div class="item-subtitle">Queen</div>
+                </div></a></li>
+            <li><a href="#" class="item-link item-content">
+                <div class="item-media"><img src="http://lorempixel.com/88/88/people/3" width="44"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">Billie Jean</div>
+                  </div>
+                  <div class="item-subtitle">Michael Jackson</div>
+                </div></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+    <div class="popover popover-contacts">
+      <div class="popover-inner">
+        <div class="list-block media-list">
+          <ul>
+            <li class="item-content">
+              <div class="item-media"><img src="http://lorempixel.com/88/88/people/1" width="40"></div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">Ali Connors</div>
+                </div>
+              </div>
+            </li>
+            <li class="item-content">
+              <div class="item-media"><img src="http://lorempixel.com/88/88/people/2" width="40"></div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">Sandra Adams</div>
+                </div>
+              </div>
+            </li>
+            <li class="item-content">
+              <div class="item-media"><img src="http://lorempixel.com/88/88/people/3" width="40"></div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">Trevor Hansen</div>
+                </div>
+              </div>
+            </li>
+            <li><a href="#" class="item-link item-content bg-red color-white ripple-white">
+                <div class="item-media"><i class="icon ks-icon-edit"></i></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">Add New</div>
+                  </div>
+                </div></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>-->
+	
+	
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
+	
+	
+    <div class="login-screen">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title"><img src="img/logo.png" width="90" height="90"><br><h4 class="color-red" style="margin-top: -1%;">POLYGLOT</h4></div>
+
+            <form>
+              <div class="list-block inputs-list" style="margin-top: -8%;">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-inner">
+						<div class="item-input">
+							<div class="item-title floating-label">Username</div>
+							<div class="item-input">
+								<input type="text" id="username" placeholder=""/>
+							</div>
+						</div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-input">
+							<div class="item-title floating-label">Password</div>
+							<div class="item-input">
+								<input type="password" id="password" placeholder=""/>
+							</div>
+						</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="content-block"><a href="index.html" class="button button-big button-fill color-red" onclick="login();">Sign In</a></div>
+              <div class="content-block" style="display:none;"><a href="index.html" id="closebutton" class="button button-big button-fill color-red close-login-screen"></a></div>
+              <div class="content-block"><a href="pages/registeration.html" class="button button-big color-red button-fill close-login-screen">Register</a></div>
+			  
+              <div class="content-block">
+                <div class="list-block-label"><a href="forgotpassword.html" class="close-login-screen">Forgot Password</a></div>
+              </div>
+            </form>
+			
+          </div>
+        </div>
+      </div>
+    </div>
+	
+    <div class="picker-modal picker-modal-demo">
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <div class="left"></div>
+          <div class="right"><a href="#" class="link close-picker">Done</a></div>
+        </div>
+      </div>
+      <div class="picker-modal-inner">
+        <div class="content-block">Integer mollis nulla id nibh elementum finibus. Maecenas eget fermentum ipsum. Sed sagittis condimentum nisl at tempus. Duis lacus libero, laoreet vitae ligula a, aliquet eleifend sapien. Nullam sodales viverra sodales.</div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/framework7.js"></script>
+    <script type="text/javascript" src="js/kitchen-sink.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+
+  </body>
+</html>
