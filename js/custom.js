@@ -5,6 +5,7 @@ var global_url = "http://polyglot.world/m/functions.php";
 /* ===== login ===== */
 function login(){
     myApp.showPreloader();
+	//myApp.showIndicator()
     var x = document.getElementById("loginbutton");
     var closebutton = document.getElementById("closebutton");
     var uname = document.getElementById("username").value;
@@ -44,6 +45,7 @@ function login(){
 			 //createContentPage();
 			 //loadpostdata();
 			myApp.hidePreloader();
+			//myApp.hideIndicator();
         }
         
     },JSON);
