@@ -5,21 +5,22 @@
         id          = "com.frame7.sample"
         versionCode = "1" 
         version     = "1.0.0" >
-        <name>Polyglot App</name>
+        <name>Polyglot</name>
         <description>
-            Say hello in different languages
+            Say hello in different languages.
         </description>
-        <author email="elvin.casem@gmail.com" href="http://evenlyten.com">
-            Evenly Ten Web Solutions
+        <author email="info@polyglot.world" href="http://polyglot.world">
+            Polyglot Team
         </author>
         <content src="index.html" />
-        
+        <access origin="*" />
         <icon src="icon.png" gap:platform="android" gap:qualifier="ldpi" />
         <icon src="icon.png" gap:platform="android" gap:qualifier="mdpi" />
         <icon src="icon.png" gap:platform="android" gap:qualifier="hdpi" />
         <icon src="icon.png" gap:platform="android" gap:qualifier="xhdpi" />
         <icon src="icon.png" gap:platform="android" gap:qualifier="xxhdpi" />
         <icon src="icon.png" gap:platform="android" gap:qualifier="fr-xxhdpi" />
+		<preference name="debuggable" value="false"/>
         <plugin name="com.indigoway.cordova.whitelist.whitelistplugin" spec="1.1.1" source="pgb" />
         <allow-navigation href="*" />
     </widget>
