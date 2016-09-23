@@ -1068,6 +1068,7 @@ function createContentPage() {
 	localStorage.setItem("offset", 0);
 	var uid = localStorage.getItem("uid");
 	var offset = localStorage.getItem("offset");
+	var userLanguage = localStorage.getItem("language");
 
     mainView.router.loadContent(
         '  <!-- Page, data-page contains page name-->' +
@@ -1075,7 +1076,8 @@ function createContentPage() {
         '    <!-- Top Navbar-->' +
         '    <div class="navbar">' +
         '      <div class="navbar-inner">' +
-        '        <div class="center">Polyglot</div>' +
+        '        <div class="left"><img src="img/logo.png" style="width:64px; height:64px;"></div>' +
+		'        <div class="center">Polyglot</div>' +
         '        <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>' +
         '      </div>' +
         '    </div>' +
@@ -1084,8 +1086,11 @@ function createContentPage() {
         '      <div class="content-block post-content">' +
         '      </div>' +
 		'        <p><a id="loadmorebutton" href="#" class="button button-fill" onclick="loadpost();" hidden>Load more post</a>.</p>' +
+
         '    </div>' +
+		'<a href="pages/post.html" class="floating-button color-red"><i class="icon icon-plus"></i></a>' +
         '  </div>'
+
     );
 	
 	//first load of posts from database show only 8
@@ -1096,7 +1101,10 @@ function createContentPage() {
 		console.log(userpost.length);
 		for(var i=0; i<userpost.length; i++){
 			
-			$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div class='card-content'>"+userpost[i].pmessage+"</div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+			$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'>"+userpost[i].pmessage+"</div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+			
+			//translate the text
+			//translate(userLanguage,userpost[postindex].postid,userpost[postindex].pmessage,"translate");
 			
 		}
 		
@@ -1163,3 +1171,28 @@ $$(document).on('click', '.showcards', testpage);
    
     //alert ("me");
 } 
+
+// == google translate ==//
+
+function translate(ajax_source,ajax_postid,ajax_pmessage, destinationId)
+    {
+   
+        $.get("https://www.googleapis.com/language/translate/v2",
+            {
+            key:"AIzaSyBKW9NPxbuAyJ20dFTgrh5hLMzF2SF-czA",
+            //source:"en",
+            target:ajax_source,
+            //alert(target);
+            q:ajax_pmessage
+            },
+            function(response)
+            {
+            	//alert(response);
+            
+                $("#"+destinationId+"-"+ajax_postid).html(response.data.translations[0].translatedText);
+ 
+            },"json") .fail(function(jqXHR, textStatus, errorThrown) 
+            {
+                alert( "error :"+errorThrown );
+            });
+    }

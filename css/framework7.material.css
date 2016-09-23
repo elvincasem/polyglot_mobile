@@ -1448,7 +1448,7 @@ html:not(.watch-active-state) .tabbar a.tab-link:active,
 .navbar-fixed.tabbar-labels-fixed .page-content,
 .navbar-fixed .tabbar-labels-fixed .page-content,
 .tabbar-labels-fixed .navbar-fixed .page-content {
-  padding-top: 128px;
+  /*padding-top: 128px;*/
 }
 .navbar-fixed .toolbar ~ .page-content {
   padding-top: 104px;
@@ -2084,7 +2084,7 @@ html:not(.watch-active-state) .chip .chip-delete:active,
   font-size: 14px;
   line-height: 1;
   margin: 16px 16px 16px;
-  padding-top: 16px;
+  /*padding-top: 16px;*/
   line-height: 16px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.54);

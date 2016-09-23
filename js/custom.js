@@ -33,6 +33,7 @@ function login(){
             localStorage.setItem("email", datas.email);
             localStorage.setItem("uid", datas.userid);
             localStorage.setItem("profileP", datas.profileP);
+			localStorage.setItem("language", datas.language);
 			
            
             document.getElementById("user_name").innerHTML = user_name;
@@ -46,7 +47,9 @@ function login(){
 			 //loadpostdata();
 			myApp.hidePreloader();
 			//myApp.hideIndicator();
-        }
+        }else{
+			myApp.hidePreloader();
+		}
         
     },JSON);
     
@@ -66,6 +69,14 @@ function loadpostdata(){
 	
 }
 
+function submitPost(){
+	var uid = localStorage.getItem("uid");
+	var pmessage = document.getElementById("post").value;
+	$$.post(global_url, {action: 'submitpost', userid:uid, pmessage:pmessage }, function (postid) {
+	console.log(postid);
+		
+	});	
+}
 
 $$(document).on('pageInit', '.page[data-page="setting"]', function (e) {
 
@@ -104,10 +115,10 @@ $$(document).on('pageAfterAnimation', '.page[data-page="profile"]', function (e)
 
   //console.log("pageanimate profile");
 
-            document.getElementById("profile_user_name").innerHTML = localStorage.getItem("firstname")+ " " +localStorage.getItem("lastname");
-            document.getElementById("profile_email_add").innerHTML = localStorage.getItem("email");
+            //document.getElementById("profile_user_name").innerHTML = localStorage.getItem("firstname")+ " " +localStorage.getItem("lastname");
+            //document.getElementById("profile_email_add").innerHTML = localStorage.getItem("email");
 
-            document.getElementById("profile_image").src = "http://polyglot.world/img/"+localStorage.getItem("profileP");
+            //document.getElementById("profile_image").src = "http://polyglot.world/img/"+localStorage.getItem("profileP");
 })  
 
 function logout(){
