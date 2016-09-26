@@ -48,7 +48,12 @@ function login(){
 			myApp.hidePreloader();
 			//myApp.hideIndicator();
         }else{
-			myApp.hidePreloader();
+			//$$('.demo-alert').on('click', function () {
+				//modalTitle: 'Polyglot'
+				myApp.hidePreloader();
+				myApp.alert('Invalid Username or Password');
+			//});
+			
 		}
         
     },JSON);
