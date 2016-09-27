@@ -42,11 +42,15 @@ function login(){
             document.getElementById("pimage").src = "http://polyglot.world/img/"+localStorage.getItem("profileP");
 			 closebutton.click();
 			 //createContentPage();
-
-			 home.click(); //trigger createContentPage
+			 
+			//$$(document).on('pageInit', '.page[data-page="home"]', function (e) {})
+			 home.click(); 
+			 //trigger createContentPage
 			 //createContentPage();
 			 //loadpostdata();
 			myApp.hidePreloader();
+			window.location.reload();
+			home.click(); 
 			//myApp.hideIndicator();
         }else{
 			//$$('.demo-alert').on('click', function () {
