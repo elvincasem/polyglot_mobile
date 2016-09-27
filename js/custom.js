@@ -64,6 +64,22 @@ function login(){
 
 }
 
+function showbutton(){
+
+var gender = document.forms[0];
+var i;
+    for (i = 0; i < gender.length; i++) {
+        if (gender[i].checked) {
+            //txt = txt + coffee[i].value + " ";
+			alert(gender[i].value);
+        }
+    }
+
+	var language = document.getElementById("language");
+	alert(language.value);
+
+}
+
 function loadpostdata(){
 	var uid = localStorage.getItem("uid");
 
