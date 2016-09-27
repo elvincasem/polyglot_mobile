@@ -57,7 +57,7 @@
             <div class="item-inner"> 
               <div class="item-title label">Birth date</div>
               <div class="item-input">
-                <input type="date" placeholder="Birth day" value="2014-04-30"/>
+                <input type="date" placeholder="Birth day"  value="2014-04-30" id="bday"/>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@
         </li>
 		<li>
 			<a href="#" class="item-link smart-select">
-            <select name = "language">
+            <select name = "language" id="language">
 				<option value="af">Afrikaans</option>
 				<option value="sq">Albanian</option>
 				<option value="ar">Arabic</option>
@@ -192,8 +192,8 @@
 </form>
 	<div class="content-block">
     <p class="buttons-row">
-		<a href="#" class="button open-login-screen">Discard</a>
-		<a href="#" class="button button-fill color-red" onclick="showbutton();">Register</a>
+		<a href="#" class="button open-login-screen" id="cancelbutton">Cancel</a>
+		<a href="#" class="button button-fill color-red" onclick="register();">Register</a>
 	</p>
 	</div>
     

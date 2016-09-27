@@ -34,6 +34,7 @@ function login(){
             localStorage.setItem("uid", datas.userid);
             localStorage.setItem("profileP", datas.profileP);
 			localStorage.setItem("language", datas.language);
+			localStorage.setItem("password", datas.password);
 			
            
             document.getElementById("user_name").innerHTML = user_name;
@@ -64,20 +65,51 @@ function login(){
 
 }
 
-function showbutton(){
+function register(){
 
+var email = document.getElementById("email").value;
+var password = document.getElementById("email").value;
+var fname = document.getElementById("firstname").value;
+var lname = document.getElementById("lastname").value;
+var bday = document.getElementById("bday").value;
+var language = document.getElementById("language").value;
 var gender = document.forms[0];
 var i;
     for (i = 0; i < gender.length; i++) {
         if (gender[i].checked) {
             //txt = txt + coffee[i].value + " ";
-			alert(gender[i].value);
+			//alert(gender[i].value);
+			var gendervalue = gender[i].value;
         }
     }
+	//alert(email);
+//check email if available
 
-	var language = document.getElementById("language");
-	alert(language.value);
-
+$$.post(global_url, {action: 'checkemail', email:email}, function (validity) {
+		//console.log(parseInt(validity));
+		
+		if(parseInt(validity) == 0){
+		myApp.showPreloader();	
+			$$.post(global_url, {action: 'register', email:email,password: password, fname: fname, lname:lname, bday: bday, language:language, gender:gendervalue}, function (register) {
+				myApp.hidePreloader();	
+				myApp.alert(register);
+				var closeregister = document.getElementById("cancelbutton");
+				closeregister.click();
+		
+			});	
+			//myApp.alert('Valid Email');
+		}else{
+			myApp.showPreloader();	
+			 setTimeout(function () {myApp.hidePreloader();}, 500);
+			myApp.alert('Email already exist!');
+		}
+		
+	});	
+	
+	//POST request
+	
+	
+	
 }
 
 function loadpostdata(){
@@ -147,6 +179,9 @@ function logout(){
   //return false;
   //$$('.post-content').innerHTML="";
   localStorage.clear();
+  document.getElementById("username").value = "";
+   document.getElementById("password").value  = "";
+  
   //localStorage.setItem("email") == "";
   //alert("logout");
 }
@@ -154,4 +189,21 @@ function logout(){
 
 function prof(){
   alert("me");
+}
+
+function forgotpassword(){
+	var forgotback = document.getElementById("forgotback");
+	forgotback.click();
+	
+}
+
+function checkLocalStorage(){
+	
+	if(localStorage.getItem("email") != null){
+		document.getElementById("username").value = localStorage.getItem("email");
+    document.getElementById("password").value = localStorage.getItem("password");
+		login();
+
+	}
+	
 }

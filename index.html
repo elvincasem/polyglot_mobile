@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/kitchen-sink.css">
     <link rel="icon" href="img/icon.png">
   </head>
-  <body class="theme-red" onload="checkSession();">
+  <body class="theme-red" onload="checkLocalStorage();">
 	<input type="hidden" id="userdata">
 	
     <div class="statusbar-overlay"></div>
@@ -49,14 +49,14 @@
                       </div></a></li>
                   <li><a href="pages/profile.html" class="item-link close-panel">
                       <div class="item-content">
-                        <!--<div class="item-media"><i class="icon ks-icon-like"></i></div>-->
+                        
                         <div class="item-inner">
                           <div class="item-title">Profile</div>
                         </div>
                       </div></a></li>
                   <li><a href="pages/posts.html" class="item-link close-panel">
                       <div class="item-content">
-                        <!--<div class="item-media"><i class="icon icon-f7"></i></div>-->
+                        
                         <div class="item-inner">
                           <div class="item-title">Posts</div>
                         </div>
@@ -301,7 +301,7 @@
 	<!--MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS MODALS-->
 	
 	
-    <div class="login-screen">
+    <div class="login-screen modal-in">
       <div class="view">
         <div class="page">
           <div class="page-content login-screen-content">
@@ -337,7 +337,7 @@
               <div class="content-block"><a href="pages/registration.html" class="button button-big color-red button-fill close-login-screen">Register</a></div>
 			  
               <div class="content-block">
-                <div class="list-block-label"><a href="forgotpassword.html" class="close-login-screen">Forgot Password</a></div>
+                <div class="list-block-label"><a href="pages/forgotpassword.html" class="close-login-screen">Forgot Password</a></div>
               </div>
             </form>
 			
