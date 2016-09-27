@@ -200,9 +200,81 @@ function forgotpassword(){
 function checkLocalStorage(){
 	
 	if(localStorage.getItem("email") != null){
+	/*	 myApp.showPreloader();
+        setTimeout(function () {
+            myApp.hidePreloader();
+        }, 500);
+		var forgotpwd = document.getElementById("menu_home");
+		forgotpwd.click();
+		
+		
+		
 		document.getElementById("username").value = localStorage.getItem("email");
     document.getElementById("password").value = localStorage.getItem("password");
+		var home = document.getElementById("menu_home");
+		var closebutton = document.getElementById("closebutton");
+		closebutton.click();
+		closebutton.click();
+		//createContentPage();
 		login();
+		//login();
+		//home.click();
+		//home.click();*/
+		
+		var home = document.getElementById("menu_home");
+		home.click();
+		var closebutton = document.getElementById("closebutton");
+		closebutton.click();
+		
+		localStorage.setItem("offset", 0);
+	var uid = localStorage.getItem("uid");
+	var offset = localStorage.getItem("offset");
+	var userLanguage = localStorage.getItem("language");
+
+    mainView.router.loadContent(
+        '  <!-- Page, data-page contains page name-->' +
+        '  <div data-page="dynamic-content" class="page">' +
+        '    <!-- Top Navbar-->' +
+        '    <div class="navbar">' +
+        '      <div class="navbar-inner">' +
+        '        <div class="left"><img src="img/logo.png" style="width:64px; height:64px;"></div>' +
+		'        <div class="center">Polyglot</div>' +
+        '        <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>' +
+        '      </div>' +
+        '    </div>' +
+        '    <!-- Scrollable page content-->' +
+        '    <div class="page-content">' +
+        '      <div class="content-block post-content">' +
+        '      </div>' +
+		'        <p><a id="loadmorebutton" href="#" class="button button-fill" onclick="loadpost();" hidden>Load more post</a>.</p>' +
+
+        '    </div>' +
+		'<a href="pages/post.html" class="floating-button color-red"><i class="icon icon-plus"></i></a>' +
+        '  </div>'
+
+    );
+	
+	//first load of posts from database show only 8
+	$$.post(global_url, {action: 'showposts', userid:uid, offset: offset}, function (posts) {
+		console.log(JSON.parse(posts));
+		
+		var userpost = JSON.parse(posts);
+		console.log(userpost.length);
+		for(var i=0; i<userpost.length; i++){
+			
+			$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'>"+userpost[i].pmessage+"</div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+			
+			//translate the text
+			//translate(userLanguage,userpost[postindex].postid,userpost[postindex].pmessage,"translate");
+			
+		}
+		
+	});
+	
+	var offsetvalue =+ 8;
+	localStorage.setItem("offset", offsetvalue);
+				
+    return;
 
 	}
 	
