@@ -1064,6 +1064,11 @@ var dynamicPageIndex = 0;
 
 function createContentPage() {
 	//alert("test");
+	//set profile pictures and names
+	document.getElementById("user_name").innerHTML = localStorage.getItem("firstname")+ " " + localStorage.getItem("lastname");
+	document.getElementById("email_add").innerHTML = localStorage.getItem("email");
+	document.getElementById("pimage").src = "http://polyglot.world/img/"+localStorage.getItem("profileP");
+	
 	
 	localStorage.setItem("offset", 0);
 	var uid = localStorage.getItem("uid");
