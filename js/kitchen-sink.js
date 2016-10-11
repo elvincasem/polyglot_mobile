@@ -1100,17 +1100,20 @@ function createContentPage() {
 	
 	//first load of posts from database show only 8
 	$$.post(global_url, {action: 'showposts', userid:uid, offset: offset}, function (posts) {
-		console.log(JSON.parse(posts));
-		
+
 		var userpost = JSON.parse(posts);
-		console.log(userpost.length);
 		for(var i=0; i<userpost.length; i++){
 			
-			$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'>"+userpost[i].pmessage+"</div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+			//setTimeout(function () {
+           
+        //"+userpost[i].profileP+"
 			
+			$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'></div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+			
+			translate(userLanguage,userpost[i].postid,userpost[i].pmessage,"translation");
 			//translate the text
-			//translate(userLanguage,userpost[postindex].postid,userpost[postindex].pmessage,"translate");
 			
+			//}, 5000);
 		}
 		
 	});
@@ -1129,16 +1132,19 @@ function testpage(){
 
 
 function loadpost(){
-	
+	//alert("test2");
 	myApp.showPreloader();
 	var uid = localStorage.getItem("uid");
+	var userLanguage = localStorage.getItem("language");
 	var offset = localStorage.getItem("offset");
 
 	$$.post(global_url, {action: 'showposts', userid:uid, offset: offset}, function (posts) {
 		var userpost = JSON.parse(posts);
 		if(userpost.length>0){
 			for(var i=0; i<userpost.length; i++){
-				$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div class='card-content'>"+userpost[i].pmessage+"</div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+				$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'></div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+				//translate the post
+				 translate(userLanguage,userpost[i].postid,userpost[i].pmessage,"translation");
 			
 			}	
 			var offset = localStorage.getItem("offset");
@@ -1179,10 +1185,10 @@ $$(document).on('click', '.showcards', testpage);
 
 // == google translate ==//
 
-function translate(ajax_source,ajax_postid,ajax_pmessage, destinationId)
+ function translate(ajax_source,ajax_postid,ajax_pmessage, destinationId)
     {
-   
-        $.get("https://www.googleapis.com/language/translate/v2",
+   //alert(ajax_pmessage);
+        $$.get("https://www.googleapis.com/language/translate/v2",
             {
             key:"AIzaSyBKW9NPxbuAyJ20dFTgrh5hLMzF2SF-czA",
             //source:"en",
@@ -1192,12 +1198,12 @@ function translate(ajax_source,ajax_postid,ajax_pmessage, destinationId)
             },
             function(response)
             {
-            	//alert(response);
-            
-                $("#"+destinationId+"-"+ajax_postid).html(response.data.translations[0].translatedText);
+				var ttext =JSON.parse(response);
+            	
+				//console.log(ttext.data.translations[0].translatedText);
+				
+                $$("#"+destinationId+"-"+ajax_postid).html(ttext.data.translations[0].translatedText);
+				
  
-            },"json") .fail(function(jqXHR, textStatus, errorThrown) 
-            {
-                alert( "error :"+errorThrown );
-            });
+            },"json");
     }
