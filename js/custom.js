@@ -104,7 +104,7 @@ $$.post(global_url, {action: 'checkemail', email:email}, function (validity) {
 			//myApp.alert('Valid Email');
 		}else{
 			myApp.showPreloader();	
-			 setTimeout(function () {myApp.hidePreloader();}, 500);
+			setTimeout(function () {myApp.hidePreloader();}, 500);
 			myApp.alert('Email already exist!');
 		}
 		
@@ -130,14 +130,41 @@ function submitPost(){
 	var uid = localStorage.getItem("uid");
 	var pmessage = document.getElementById("post").value;
 	$$.post(global_url, {action: 'submitpost', userid:uid, pmessage:pmessage }, function (postid) {
-	console.log(postid);
-		
+	//console.log(postid);
+	//createContentPage();
+	
 	});	
 }
 
-$$(document).on('pageInit', '.page[data-page="setting"]', function (e) {
+
+$$(document).on('pageInit', '.page[data-page="postblank"]', function (e) {
+//alert("postblank");
 
  myApp.showPreloader();
+        setTimeout(function () {
+            myApp.hidePreloader();
+			var home = document.getElementById("menu_home");
+			home.click();
+        }, 1500);
+}) 
+$$(document).on('pageInit', '.page[data-page="dynamic-content"]', function (e) {
+//window.location.reload();
+			//var home = document.getElementById("menu_home");
+			//home.click();
+ myApp.showPreloader();
+        setTimeout(function () {
+            myApp.hidePreloader();
+			//var home = document.getElementById("menu_home");
+			//home.click();
+        }, 1500);
+}) 
+
+
+$$(document).on('pageInit', '.page[data-page="setting"]', function (e) {
+
+		var home = document.getElementById("menu_home");
+		home.click();
+		myApp.showPreloader();
         setTimeout(function () {
             myApp.hidePreloader();
         }, 500);

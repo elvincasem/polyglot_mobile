@@ -1065,6 +1065,7 @@ var dynamicPageIndex = 0;
 function createContentPage() {
 	//alert("test");
 	//set profile pictures and names
+	
 	document.getElementById("user_name").innerHTML = localStorage.getItem("firstname")+ " " + localStorage.getItem("lastname");
 	document.getElementById("email_add").innerHTML = localStorage.getItem("email");
 	document.getElementById("pimage").src = "http://polyglot.world/img/"+localStorage.getItem("profileP");
@@ -1088,7 +1089,7 @@ function createContentPage() {
         '    </div>' +
         '    <!-- Scrollable page content-->' +
         '    <div class="page-content">' +
-        '      <div class="content-block post-content">' +
+        '      <div class="content-block post-content" id="post-content">' +
         '      </div>' +
 		'        <p><a id="loadmorebutton" href="#" class="button button-fill" onclick="loadpost();" hidden>Load more post</a>.</p>' +
 
@@ -1097,18 +1098,19 @@ function createContentPage() {
         '  </div>'
 
     );
-	
+	document.getElementById("post-content").innerHTML="";
 	//first load of posts from database show only 8
 	$$.post(global_url, {action: 'showposts', userid:uid, offset: offset}, function (posts) {
 
 		var userpost = JSON.parse(posts);
+		//console.log(userpost);
 		for(var i=0; i<userpost.length; i++){
 			
 			//setTimeout(function () {
            
         //"+userpost[i].profileP+"
-			
-			$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'></div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+			//console.log(userpost[i].profileP);
+			$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'></div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'></div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
 			
 			translate(userLanguage,userpost[i].postid,userpost[i].pmessage,"translation");
 			//translate the text
@@ -1140,6 +1142,7 @@ function loadpost(){
 
 	$$.post(global_url, {action: 'showposts', userid:uid, offset: offset}, function (posts) {
 		var userpost = JSON.parse(posts);
+		console.log(userpost);
 		if(userpost.length>0){
 			for(var i=0; i<userpost.length; i++){
 				$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'></div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
