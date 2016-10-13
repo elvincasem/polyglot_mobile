@@ -1190,7 +1190,8 @@ $$(document).on('click', '.showcards', testpage);
 
  function translate(ajax_source,ajax_postid,ajax_pmessage, destinationId)
     {
-   //alert(ajax_pmessage);
+		
+   //alert(ajax_postid);
         $$.get("https://www.googleapis.com/language/translate/v2",
             {
             key:"AIzaSyBKW9NPxbuAyJ20dFTgrh5hLMzF2SF-czA",
@@ -1210,3 +1211,62 @@ $$(document).on('click', '.showcards', testpage);
  
             },"json");
     }
+
+	
+
+function ownpost_profile(){
+	
+	localStorage.setItem("offset", 0);
+	var uid = localStorage.getItem("uid");
+	var userLanguage = localStorage.getItem("language");
+	var offset = localStorage.getItem("offset");
+	
+	document.getElementById("ownpost").innerHTML="";
+	//first load of posts from database show only 8
+	$$.post(global_url, {action: 'ownpost', userid:uid, offset: offset}, function (posts) {
+
+		var userpost = JSON.parse(posts);
+		console.log(userpost);
+		for(var i=0; i<userpost.length; i++){
+			
+			//setTimeout(function () {
+           
+        //"+userpost[i].profileP+"
+			//console.log(userpost[i].profileP);
+			$$('#ownpost').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'></div>	</div><div id='ptranslation-"+userpost[i].postid+"' class='card-content'></div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+			
+			translate(userLanguage,userpost[i].postid,userpost[i].pmessage,"ptranslation");
+			//translate the text
+			
+			//}, 5000);
+		}
+		
+	});
+}
+
+function following_list(){
+	
+	var uid = localStorage.getItem("uid");
+	document.getElementById("followinglist").innerHTML="";
+	
+	$$.post(global_url, {action: 'followinglist', userid:uid}, function (following) {
+
+		var followinglist = JSON.parse(following);
+		console.log(followinglist);
+		for(var i=0; i<followinglist.length; i++){
+
+			$$('#followinglist').append(
+			'<li class="item-content">'+
+			'	<div class="item-inner">'+
+            '		<div class="item-title"><div class="ks-facebook-avatar"><div class="item-media"><div class="col-75"><img height="40" width="40" src="http://polyglot.world/img/'+followinglist[i].profileP+'"></div>'+followinglist[i].firstname +' '+followinglist[i].lastname+
+			'			<div class="col-25"><a class="button button-fill button-raised pull-right" style="text-align:right;">Following</a></div>'+
+			'		</div></div></div>'+
+			'	</div>'+
+			'</li>');
+
+		}
+		
+	});
+	
+	
+}

@@ -1,9 +1,9 @@
 
-<div data-page="profile" class="page tabbar-labels-fixed" onload="prof();">
+<div data-page="profile" class="page tabbar-labels-fixed">
   <div class="navbar">
     <div class="navbar-inner">
       <div class="left"><a href="index.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
-      <div class="center">Elvin Casem</div> <div class="center">@jdkaf</div>
+      <div class="center" id="profile_name"></div> <div class="center"></div>
       <div class="right"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
     </div>
   </div>
@@ -44,94 +44,31 @@
   -->
   
 
-  <div class="page-content hide-bars-on-scroll">
-		<div class="content-block-title" style="border-bottom:2px solid #fdf;">
+  <div class="page-content">
+		<div class="content-block-title" style="border-bottom:2px solid #fdf;padding-bottom:10px;">
 			<div class="item-media" style="float:left;margin-right:5px;"><img src="img/icon.png" width="60" id="profile_image"/></div>
-				  <div class="item-inner">
+		  <div class="item-inner">
 					<div class="item-title-row">
-					  <div class="item-title" id="profile_user_name"><strong >Paul Iglot</strong></div>
+					  <div class="item-title" style="font-weight:bold;font-size:large;" id="profile_complete_name"><strong ></strong></div>
 					</div>
-					<div class="item-subtitle" id="profile_email_add">@pauli</div>
-				  </div>
+					<div class="item-subtitle" id="profile_email_add"></div>
+					<span><br /><br /></span>
+					<a href="pages/setting.html" class="button button-fill button-raised">Edit Profile</a>
+					<span><br /><br /></span>
+					
+		</div>
+				<div class="row">
+					<div class="col-33"><center><a href="#post"><span id="noofpost"></span><br>Posts</a></center></div>
+					<div class="col-33"><center><a href="pages/following.html"><span id="nooffollowing"></span><br>Following</a></center></div>
+					<div class="col-33"><center><a href="pages/followers.html"><span id="nooffollowers"></span><br>Followers</a></center></div>
+				</div>
+
 		</div>
 		
-        <div class="content-block">
+        <div class="content-block" id="ownpost">
 		
 				
-          <div class="card ks-facebook-card">
-					<div class="card-header">
-						<div class="ks-facebook-avatar"><img src="img/person1.jpg" width="34" height="34"/></div>
-						<div class="ks-facebook-name">Paul Iglotsssssssss</div>
-						<div class="ks-facebook-date">Monday at 2:15 PM</div>
-					</div>
-					<div class="card-content"> 
-						<div class="card-content-inner">
-							<p>What a nice photo i took yesterday!</p><img src="img/mountains.jpg" width="100%"/>
-							<p class="color-gray">Likes: 112 &nbsp;&nbsp; Comments: 43</p>
-						</div>
-					</div>
-					<div class="card-footer"><a href="#" class="link">Like</a><a href="#" class="link">Comment</a><a href="#" class="link">Share</a></div>
-		  </div>
-		  
-		  <div class="card ks-facebook-card">
-					<div class="card-header">
-						<div class="ks-facebook-avatar"><img src="img/person1.jpg" width="34" height="34"/></div>
-						<div class="ks-facebook-name">Paul Iglot</div>
-						<div class="ks-facebook-date">Monday at 2:15 PM</div>
-					</div>
-					<div class="card-content"> 
-						<div class="card-content-inner">
-							<p>What a nice photo i took yesterday!</p>
-							<p class="color-gray">Likes: 112 &nbsp;&nbsp; Comments: 43</p>
-						</div>
-					</div>
-					<div class="card-footer"><a href="#" class="link">Like</a><a href="#" class="link">Comment</a><a href="#" class="link">Share</a></div>
-		  </div>
-		  
-		  <div class="card ks-facebook-card">
-					<div class="card-header">
-						<div class="ks-facebook-avatar"><img src="img/person1.jpg" width="34" height="34"/></div>
-						<div class="ks-facebook-name">Paul Iglot</div>
-						<div class="ks-facebook-date">Monday at 2:15 PM</div>
-					</div>
-					<div class="card-content"> 
-						<div class="card-content-inner">
-							<p>What a nice photo i took yesterday!</p><img src="img/mountains.jpg" width="100%"/>
-							<p class="color-gray">Likes: 112 &nbsp;&nbsp; Comments: 43</p>
-						</div>
-					</div>
-					<div class="card-footer"><a href="#" class="link">Like</a><a href="#" class="link">Comment</a><a href="#" class="link">Share</a></div>
-		  </div>
-
-		  <div class="card ks-facebook-card">
-					<div class="card-header">
-						<div class="ks-facebook-avatar"><img src="img/person1.jpg" width="34" height="34"/></div>
-						<div class="ks-facebook-name">Paul Iglot</div>
-						<div class="ks-facebook-date">Monday at 2:15 PM</div>
-					</div>
-					<div class="card-content"> 
-						<div class="card-content-inner">
-							<p>What a nice photo i took yesterday!</p>
-							<p class="color-gray">Likes: 112 &nbsp;&nbsp; Comments: 43</p>
-						</div>
-					</div>
-					<div class="card-footer"><a href="#" class="link">Like</a><a href="#" class="link">Comment</a><a href="#" class="link">Share</a></div>
-		  </div>
-		  
-		  <div class="card ks-facebook-card">
-					<div class="card-header">
-						<div class="ks-facebook-avatar"><img src="img/person1.jpg" width="34" height="34"/></div>
-						<div class="ks-facebook-name">Paul Iglot</div>
-						<div class="ks-facebook-date">Monday at 2:15 PM</div>
-					</div>
-					<div class="card-content"> 
-						<div class="card-content-inner">
-							<p>What a nice photo i took yesterday!</p><img src="img/mountains.jpg" width="100%"/>
-							<p class="color-gray">Likes: 112 &nbsp;&nbsp; Comments: 43</p>
-						</div>
-					</div>
-					<div class="card-footer"><a href="#" class="link">Like</a><a href="#" class="link">Comment</a><a href="#" class="link">Share</a></div>
-		  </div>
+          
         </div>
       
       

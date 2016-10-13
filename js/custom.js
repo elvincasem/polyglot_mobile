@@ -1,7 +1,6 @@
 /* ===== variables === */
 var global_url = "http://polyglot.world/m/functions.php";
 
-
 /* ===== login ===== */
 function login(){
     myApp.showPreloader();
@@ -184,6 +183,30 @@ $$(document).on('pageInit', '.page[data-page="cards"]', function (e) {
         }, 500);
 }) 
 
+
+$$(document).on('pageInit', '.page[data-page="profile"]', function (e) {
+
+ myApp.showPreloader();
+        setTimeout(function () {
+            myApp.hidePreloader();
+			ownpost_profile();
+        }, 500);
+		
+}) 
+
+
+$$(document).on('pageInit', '.page[data-page="following"]', function (e) {
+
+ myApp.showPreloader();
+        setTimeout(function () {
+            myApp.hidePreloader();
+			following_list();
+        }, 500);
+		
+}) 
+
+
+
 $$(document).on('pageAfterAnimation', '.page[data-page="setting"]', function (e) {
   // Do something here when page with data-page="about" attribute loaded and initialized
   document.getElementById('fname').value = localStorage.getItem("firstname");
@@ -196,7 +219,30 @@ $$(document).on('pageAfterAnimation', '.page[data-page="setting"]', function (e)
 })  
 
 $$(document).on('pageAfterAnimation', '.page[data-page="profile"]', function (e) {
-
+		var uid = localStorage.getItem("uid");
+		var nopost;
+		var nofollowers;
+		var nofollowing;
+		//get number of post
+		$$.post(global_url, {action: 'numberofpost', userid:uid}, function (noofpost) {
+			console.log(noofpost);
+			document.getElementById("noofpost").innerHTML = noofpost;
+			nopost = noofpost;
+		}); 
+		//get number of followers
+		$$.post(global_url, {action: 'numberoffollowers', userid:uid}, function (nooffollowers) {
+			console.log(nooffollowers);
+			document.getElementById("nooffollowers").innerHTML = nooffollowers;
+			nofollowers = nooffollowers;
+		});
+		//get number of following
+		$$.post(global_url, {action: 'numberoffollowing', userid:uid}, function (nooffollowing) {
+			console.log(nooffollowing);
+			document.getElementById("nooffollowing").innerHTML = nooffollowing;
+			nofollowing = nooffollowing;
+		});
+		
+		
   //console.log("pageanimate profile");
 
             //document.getElementById("profile_user_name").innerHTML = localStorage.getItem("firstname")+ " " +localStorage.getItem("lastname");
@@ -204,6 +250,21 @@ $$(document).on('pageAfterAnimation', '.page[data-page="profile"]', function (e)
 
             //document.getElementById("profile_image").src = "http://polyglot.world/img/"+localStorage.getItem("profileP");
 })  
+
+$$(document).on('pageAfterAnimation', '.page[data-page="profile"]', function (e) {
+	var completename = localStorage.getItem("firstname")+" "+ localStorage.getItem("lastname");
+  // Do something here when page with data-page="about" attribute loaded and initialized
+  document.getElementById('profile_name').innerHTML = completename;
+  document.getElementById('profile_complete_name').innerHTML = completename;
+  document.getElementById('profile_email_add').innerHTML = localStorage.getItem("email");
+  
+})  
+
+$$(document).on('pageAfterAnimation', '.page[data-page="following"]', function (e) {
+	
+  
+})  
+
 
 function logout(){
   //window.location.href = "#";
@@ -218,9 +279,6 @@ function logout(){
 }
 
 
-function prof(){
-  alert("me");
-}
 
 function forgotpassword(){
 	var forgotback = document.getElementById("forgotback");
