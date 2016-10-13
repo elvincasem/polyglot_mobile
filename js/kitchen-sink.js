@@ -1257,11 +1257,8 @@ function following_list(){
 
 			$$('#followinglist').append(
 			'<li class="item-content">'+
-			'	<div class="item-inner">'+
-            '		<div class="item-title"><div class="ks-facebook-avatar"><div class="item-media"><div class="col-75"><img height="40" width="40" src="http://polyglot.world/img/'+followinglist[i].profileP+'"></div>'+followinglist[i].firstname +' '+followinglist[i].lastname+
-			'			<div class="col-25"><a class="button button-fill button-raised pull-right" style="text-align:right;">Following</a></div>'+
-			'		</div></div></div>'+
-			'	</div>'+
+            '<img height="40" width="40" src="http://polyglot.world/img/'+followinglist[i].profileP+'"><span class="item-title" style="text-align:left;">'+followinglist[i].firstname +' '+followinglist[i].lastname+
+			'</span><a class="button button-fill button-raised pull-right" style="margin-right:5%;" onclick="unfollow();">Following</a>'+
 			'</li>');
 
 		}

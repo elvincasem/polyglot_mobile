@@ -326,5 +326,18 @@ function checkLocalStorage(){
 	
 }
 
+function unfollow(){
+	     myApp.confirm('Are you sure you want to unfollow?', function () {
+            myApp.alert('Unfollow Successful!');
+			//myApp.showPreloader();
+				setTimeout(function () {
+					//myApp.hidePreloader();
+					following_list();
+				}, 2500);
+			//window.location.reload();
+			//window.location.replace("pages/following.html");
+        });
+		
+}
 
 
