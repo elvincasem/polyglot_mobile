@@ -95,7 +95,7 @@ $$.post(global_url, {action: 'checkemail', email:email}, function (validity) {
 		myApp.showPreloader();	
 			$$.post(global_url, {action: 'register', email:email,password: password, fname: fname, lname:lname, bday: bday, language:language, gender:gendervalue}, function (register) {
 				myApp.hidePreloader();	
-				myApp.alert(register);
+				//myApp.alert(register);
 				var closeregister = document.getElementById("cancelbutton");
 				closeregister.click();
 		
@@ -204,6 +204,7 @@ $$(document).on('pageInit', '.page[data-page="following"]', function (e) {
         }, 500);
 		
 }) 
+
 
 
 
@@ -338,6 +339,119 @@ function unfollow(){
 			//window.location.replace("pages/following.html");
         });
 		
+}
+function buttonLike(pid){
+    var uid = localStorage.getItem("uid");
+    
+    //myApp.alert(pid);
+    //myApp.alert(uid);
+    $$.post(global_url, {action: 'buttonlike',uid: uid, pid: pid}, function (data,status) {
+		
+		console.log(data);
+		//myApp.alert(data);
+		
+	},JSON);
+}
+ function translate(ajax_source,ajax_postid,ajax_pmessage, destinationId)
+    {
+		
+   //alert(ajax_postid);
+        $$.get("https://www.googleapis.com/language/translate/v2",
+            {
+            key:"AIzaSyBKW9NPxbuAyJ20dFTgrh5hLMzF2SF-czA",
+            //source:"en",
+            target:ajax_source,
+            //alert(target);
+            q:ajax_pmessage
+            },
+            function(response)
+            {
+				var ttext =JSON.parse(response);
+            	
+				//console.log(ttext.data.translations[0].translatedText);
+				
+                $$("#"+destinationId+"-"+ajax_postid).html(ttext.data.translations[0].translatedText);
+				
+ 
+            },"json");
+    }
+function comments(pid,uid){
+	//myApp.alert(pid);
+	//myApp.alert(uid);
+
+	$$.post(global_url, {action: 'postSelect', pid:pid, uid:uid}, function (posts) {
+		console.log(posts);
+		//myApp.alert(posts);
+		var datas = JSON.parse(posts);
+		var lang = localStorage.getItem("language");
+		//myApp.alert(lang);
+		for(var i = 0; i<datas.length; i++){
+			//myApp.alert(datas[i].firstname);
+		$$('#postComment').append("<center><div class='card ks-facebook-card'>"+
+                "<div class='card-header no-border link'>"+
+                "   	<div class='item-media'>"+
+                "       	<img src='http://polyglot.world/img/"+datas[i].profileP+"' width='34' height='34'/>"+
+                "		</div>"+
+                "		<div class='item-title label'>"+
+                "			<strong>"+datas[i].firstname+" "+datas[i].lastname+"</strong>"+
+                "		</div>"+
+                "		<div class='item-input'>"+
+                "   		<div id='translations-"+datas[i].postid+"' class='card-content'></div>"+
+                "		</div>"+
+                "   </div></center>"
+           
+
+
+					);
+		translate(lang,datas[i].postid,datas[i].pmessage,"translations");
+		}
+	});	
+
+	$$.post(global_url, {action: 'postComment', pid:pid, uid:uid}, function (com) {
+		console.log(com);
+		//myApp.alert(com);
+		document.getElementById("comments").value = "";
+		var comms = JSON.parse(com);
+		var langs = localStorage.getItem("language");
+		for(var i = 0; i<comms.length; i++){
+				$$('#postCommenttor').append('<form id="my-form" class="list-block store-data">'+
+				  '<ul>'+
+				  '	<li>'+
+				  '		<div class="content-block">'+
+				  '       <div class="item-title label">'+comms[i].firstname+' '+comms[i].lastname+'</div>'+
+				  '       	<div class="item-block">'+
+				  '		  	<strong><div id="translationss-'+comms[i].commentid+'" ></div></strong>'+
+				  '     	</div>'+
+				  '     </div>'+
+				  ' </li>'+
+				  '	</ul>'+
+				  '</form>');
+				 translate(langs,comms[i].commentid,comms[i].comments,"translationss");
+
+
+
+           } 
+          
+			$$('#PS').append(''+pid+'');
+
+	
+	});	
+
+}
+function sendCom(){
+	var uid = localStorage.getItem("uid");
+	var pid = document.getElementById("PS").innerHTML;
+	var comments = document.getElementById("comments").value;
+	//myApp.alert(uid);
+	//myApp.alert(pid);
+	//myApp.alert(comments);
+		$$.post(global_url, {action: 'insertComment', pid:pid, uid:uid, comments: comments}, function (inCom) {
+			console.log(inCom);
+			document.getElementById("comments").value = "";
+			//document.getElementById("postCommenttor").value = "";
+			$$('#postCommenttor').load(document.URL +  ' #postCommenttor');
+		
+		});	
 }
 
 
