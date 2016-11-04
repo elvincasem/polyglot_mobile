@@ -1125,21 +1125,13 @@ function createContentPage() {
                                // myApp.alert(status);
                                 
                               }
-<<<<<<< HEAD
                             /*  $$('#imgLike').append("<a onclick='buttonLike("+userpost[i].postid+");' class='link'>"+
-=======
-                          /*    $$('#imgLike').append("<a onclick='buttonLike("+userpost[i].postid+");' class='link'>"+
->>>>>>> origin/master
                                                         "<input type='hidden' id='like-"+userpost[i].postid+"' name = 'like' value ='"+status+"'>"+
                                                             "<div onclick='likeUnlike("+userpost[i].postid+")' id='likes-"+userpost[i].postid+"' name='action'>"+
                                                                 "<img id='likeimg-"+userpost[i].postid+"' class='like hvr-float-shadow' src='"+src+"' width='15px' height='15px'>"+
                                                             "</div>"+
                                                     "</a>"
-<<<<<<< HEAD
                                                                 );*/
-=======
-                                                                ); */
->>>>>>> origin/master
 
                  }
             });
@@ -1159,7 +1151,6 @@ function createContentPage() {
                 "</div>"+
                 "   <div id='translation-"+userpost[i].postid+"' class='card-content'></div>"+
                 "       <div class='card-footer no-border'>"+
-<<<<<<< HEAD
                 "               <a onclick='buttonLike("+userpost[i].postid+");' class='link'>"+
                                                         "<input type='hidden' id='like-"+userpost[i].postid+"' name = 'like' value ='"+status+"'>"+
                                                             "<div onclick='likeUnlike("+userpost[i].postid+")' id='likes-"+userpost[i].postid+"' name='action'>"+
@@ -1174,13 +1165,6 @@ function createContentPage() {
                 "                   <img src='img/option.png' width ='25px' height='25px' class='hvr-float-shadow' data-toggle='modal' onclick='displayoption("+userpost[i].postid+","+i+");'>"+
                 "               </div>"+
                 "           </a>"+
-=======
-                "                   <div id='imgLike'></div>"+
-                "           <a href='pages/comment.html' onclick='comments("+userpost[i].postid+","+userpost[i].userid+")' class='link'>"+
-                "               <img src='http://polyglot.world/img/comment.png' width='25' height='25'/>"+
-                "           </a>"+
-                "           <a href='#' class='link'>Share</a>"+
->>>>>>> origin/master
                 "       </div>"+
                 "   </div>"
             );
@@ -1239,11 +1223,7 @@ var src="img/thumbb.png";
                               }else{
                                var status = "Like";
                                var src="img/thumbu.png";
-<<<<<<< HEAD
                                // myApp.alert("eto1");
-=======
-                                //myApp.alert("eto1");
->>>>>>> origin/master
                                 
                               }
                          }
@@ -1251,7 +1231,6 @@ var src="img/thumbb.png";
                 //console.log(userlike);
             });
 				$$('.post-content').append("<div class='card ks-facebook-card'>"+
-<<<<<<< HEAD
                 "<div class='card-header no-border link'>"+
                 "   <div class='ks-facebook-avatar'>"+
                 "       <img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/>"+
@@ -1278,28 +1257,6 @@ var src="img/thumbb.png";
                 "       </div>"+
                 "   </div>"
             );
-=======
-                    "<div class='card-header no-border link'>"+
-                    "   <div class='ks-facebook-avatar'>"+
-                    "       <img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/>"+
-                    "   </div>"+
-                    "	<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div>"+
-                    "   <div class='ks-facebook-date'>Monday at 3:47 PM</div>"+
-                    "</div>"+
-                    "   <div id='translation-"+userpost[i].postid+"' class='card-content'></div>"+
-                    "       <div class='card-footer no-border'>"+
-                    "           <a onclick='buttonLike("+userpost[i].postid+");' class='link'>"+
-                    "               <input type='hidden' id='like-"+userpost[i].postid+"' name = 'like' value ='"+status+"'>"+
-                    //"               <div onclick='likeUnlike("+userpost[i].postid+")' id='likes-"+userpost[i].postid+"' name='action'>"+
-                    "                   <img id='likeimg-"+userpost[i].postid+"' class='like hvr-float-shadow' src='"+src+"' width='15px' height='15px'>"+
-                    "               </div>"+
-                    "           </a>"+
-                    "           <a href='#' class='link'>Comment</a>"+
-                    "           <a href='#' class='link'>Share</a>"+
-                    "       </div>"+
-                    "   </div>"
-                );
->>>>>>> origin/master
 				//translate the post
 				 translate(userLanguage,userpost[i].postid,userpost[i].pmessage,"translation");
 			
