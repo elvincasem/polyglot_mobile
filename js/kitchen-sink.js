@@ -1100,17 +1100,74 @@ function createContentPage() {
     );
 	document.getElementById("post-content").innerHTML="";
 	//first load of posts from database show only 8
+    
 	$$.post(global_url, {action: 'showposts', userid:uid, offset: offset}, function (posts) {
-
+        var src="img/thumbb.png"; 
 		var userpost = JSON.parse(posts);
+         
 		//console.log(userpost);
 		for(var i=0; i<userpost.length; i++){
-			
+            var pid = userpost[i].postid;
+			$$.post(global_url, {action: 'btnlikes', userid:uid, pid: pid}, function (likes) {
+                //myApp.alert(likes);
+                var userlike = JSON.parse(likes);
+                for(var i=0; i<userlike.length; i++){
+               // myApp.alert(userlike[i].statuslike);
+               // myApp.alert(pid);
+                if(userlike[i].statuslike > 0){
+    
+                               var status ="Unlike";
+                               var src="img/thumbb.png";  
+                              //  myApp.alert(status);
+                              }else{
+                               var status = "Like";
+                               var src="img/thumbu.png";
+                               // myApp.alert(status);
+                                
+                              }
+                            /*  $$('#imgLike').append("<a onclick='buttonLike("+userpost[i].postid+");' class='link'>"+
+                                                        "<input type='hidden' id='like-"+userpost[i].postid+"' name = 'like' value ='"+status+"'>"+
+                                                            "<div onclick='likeUnlike("+userpost[i].postid+")' id='likes-"+userpost[i].postid+"' name='action'>"+
+                                                                "<img id='likeimg-"+userpost[i].postid+"' class='like hvr-float-shadow' src='"+src+"' width='15px' height='15px'>"+
+                                                            "</div>"+
+                                                    "</a>"
+                                                                );*/
+
+                 }
+            });
+
+                             
 			//setTimeout(function () {
            
         //"+userpost[i].profileP+"
 			//console.log(userpost[i].profileP);
-			$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'></div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'></div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+			$$('.post-content').append("<div class='card ks-facebook-card'>"+
+                "<div class='card-header no-border link'>"+
+                "   <div class='ks-facebook-avatar'>"+
+                "       <img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/>"+
+                "   </div>"+		
+                "   <div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div>"+
+                "   <div class='ks-facebook-date'></div>"+
+                "</div>"+
+                "   <div id='translation-"+userpost[i].postid+"' class='card-content'></div>"+
+                "       <div class='card-footer no-border'>"+
+                "               <a onclick='buttonLike("+userpost[i].postid+");' class='link'>"+
+                                                        "<input type='hidden' id='like-"+userpost[i].postid+"' name = 'like' value ='"+status+"'>"+
+                                                            "<div onclick='likeUnlike("+userpost[i].postid+")' id='likes-"+userpost[i].postid+"' name='action'>"+
+                                                                "<img id='likeimg-"+userpost[i].postid+"' class='like hvr-float-shadow' src='img/thumbu.png' width='15px' height='15px'>"+
+                                                            "</div>"+
+                                                    "</a>"+
+                "           <a href='pages/comment.html' onclick='comments("+userpost[i].postid+","+userpost[i].userid+")' class='link'>"+
+                "               <img src='http://polyglot.world/img/comment.png' width='20' height='20'/>"+
+                "           </a>"+
+                "           <a href='#' class='link'>"+
+                "               <div id = 'option_butt' style='display: inline-block;  margin-right: 10px; vertical-align: bottom;' class='col-md-3'>"+
+                "                   <img src='img/option.png' width ='25px' height='25px' class='hvr-float-shadow' data-toggle='modal' onclick='displayoption("+userpost[i].postid+","+i+");'>"+
+                "               </div>"+
+                "           </a>"+
+                "       </div>"+
+                "   </div>"
+            );
 			
 			translate(userLanguage,userpost[i].postid,userpost[i].pmessage,"translation");
 			//translate the text
@@ -1143,9 +1200,63 @@ function loadpost(){
 	$$.post(global_url, {action: 'showposts', userid:uid, offset: offset}, function (posts) {
 		var userpost = JSON.parse(posts);
 		console.log(userpost);
+var src="img/thumbb.png"; 
+       
+                             
+                              
+                          
+                            
+
 		if(userpost.length>0){
 			for(var i=0; i<userpost.length; i++){
-				$$('.post-content').append("<div class='card ks-facebook-card'><div class='card-header no-border link'><div class='ks-facebook-avatar'><img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/></div>		<div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div><div class='ks-facebook-date'>Monday at 3:47 PM</div>	</div><div id='translation-"+userpost[i].postid+"' class='card-content'></div><div class='card-footer no-border'><a href='#' class='link'>Like</a><a href='#' class='link'>Comment</a><a href='#' class='link'>Share</a></div></div>");
+                            var pid = userpost[i].postid;
+            $$.post(global_url, {action: 'btnlikes', userid:uid, pid: pid}, function (likes) {
+                //myApp.alert(likes);
+                var userlike = JSON.parse(likes);
+                       for(var i=0; i<userlike.length; i++){
+                             //myApp.alert(userlike[i].statuslike);
+                             if(userlike[i].statuslike > 0){
+    
+                               var status ="Unlike";
+                               var src="img/thumbb.png";  
+                                //myApp.alert("eto");
+                              }else{
+                               var status = "Like";
+                               var src="img/thumbu.png";
+                               // myApp.alert("eto1");
+                                
+                              }
+                         }
+                /* */
+                //console.log(userlike);
+            });
+				$$('.post-content').append("<div class='card ks-facebook-card'>"+
+                "<div class='card-header no-border link'>"+
+                "   <div class='ks-facebook-avatar'>"+
+                "       <img src='http://polyglot.world/img/"+userpost[i].profileP+"' width='34' height='34'/>"+
+                "   </div>"+        
+                "   <div class='ks-facebook-name'>"+userpost[i].firstname+" "+userpost[i].lastname+"</div>"+
+                "   <div class='ks-facebook-date'></div>"+
+                "</div>"+
+                "   <div id='translation-"+userpost[i].postid+"' class='card-content'></div>"+
+                "       <div class='card-footer no-border'>"+
+                "               <a onclick='buttonLike("+userpost[i].postid+");' class='link'>"+
+                                                        "<input type='hidden' id='like-"+userpost[i].postid+"' name = 'like' value ='"+status+"'>"+
+                                                            "<div onclick='likeUnlike("+userpost[i].postid+")' id='likes-"+userpost[i].postid+"' name='action'>"+
+                                                                "<img id='likeimg-"+userpost[i].postid+"' class='like hvr-float-shadow' src='img/thumbu.png' width='15px' height='15px'>"+
+                                                            "</div>"+
+                                                    "</a>"+
+                "           <a href='pages/comment.html' onclick='comments("+userpost[i].postid+","+userpost[i].userid+")' class='link'>"+
+                "               <img src='http://polyglot.world/img/comment.png' width='25' height='25'/>"+
+                "           </a>"+
+                "           <a href='#' class='link'>"+
+                "               <div id = 'option_butt' style='display: inline-block;  margin-right: 10px; vertical-align: bottom;' class='col-md-3'>"+
+                "                   <img src='img/option.png' width ='25px' height='25px' class='hvr-float-shadow' data-toggle='modal' onclick='displayoption("+userpost[i].postid+","+i+");'>"+
+                "               </div>"+
+                "           </a>"+
+                "       </div>"+
+                "   </div>"
+            );
 				//translate the post
 				 translate(userLanguage,userpost[i].postid,userpost[i].pmessage,"translation");
 			
@@ -1168,6 +1279,9 @@ function loadpost(){
         }, 1000);
 	
 }
+
+
+
 
 $$(document).on('click', '.showcards', testpage);
 
@@ -1267,3 +1381,12 @@ function following_list(){
 	
 	
 }
+$$(document).on('pageInit', '.page[data-page="commentT"]', function (e) {
+
+ myApp.showPreloader();
+        setTimeout(function () {
+            myApp.hidePreloader();
+            following_list();
+        }, 500);
+        
+}) 
