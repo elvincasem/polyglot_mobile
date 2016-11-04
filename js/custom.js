@@ -95,7 +95,7 @@ $$.post(global_url, {action: 'checkemail', email:email}, function (validity) {
 		myApp.showPreloader();	
 			$$.post(global_url, {action: 'register', email:email,password: password, fname: fname, lname:lname, bday: bday, language:language, gender:gendervalue}, function (register) {
 				myApp.hidePreloader();	
-				myApp.alert(register);
+				//myApp.alert(register);
 				var closeregister = document.getElementById("cancelbutton");
 				closeregister.click();
 		
@@ -344,11 +344,19 @@ function buttonLike(pid){
     var uid = localStorage.getItem("uid");
     
     //myApp.alert(pid);
+<<<<<<< HEAD
    // myApp.alert(uid);
     $$.post(global_url, {action: 'buttonlike',uid: uid, pid: pid}, function (data,status) {
 		
 		console.log(data);
 		myApp.alert("liked");
+=======
+    //myApp.alert(uid);
+    $$.post(global_url, {action: 'buttonlike',uid: uid, pid: pid}, function (data,status) {
+		
+		console.log(data);
+		//myApp.alert(data);
+>>>>>>> origin/master
 		
 	},JSON);
 }
@@ -433,6 +441,29 @@ function comments(pid,uid){
            } 
           
 			$$('#PS').append(''+pid+'');
+<<<<<<< HEAD
+=======
+
+	
+	});	
+
+}
+function sendCom(){
+	var uid = localStorage.getItem("uid");
+	var pid = document.getElementById("PS").innerHTML;
+	var comments = document.getElementById("comments").value;
+	//myApp.alert(uid);
+	//myApp.alert(pid);
+	//myApp.alert(comments);
+		$$.post(global_url, {action: 'insertComment', pid:pid, uid:uid, comments: comments}, function (inCom) {
+			console.log(inCom);
+			document.getElementById("comments").value = "";
+			//document.getElementById("postCommenttor").value = "";
+			$$('#postCommenttor').load(document.URL +  ' #postCommenttor');
+		
+		});	
+}
+>>>>>>> origin/master
 
 	
 	});	
